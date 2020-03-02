@@ -1,0 +1,7 @@
+version: '3'
+
+services: 
+    web:
+        build: . # build current dockerfile
+        ports:
+            - "8080:8080" # local 8080 -> container 8080
