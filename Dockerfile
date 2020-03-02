@@ -13,8 +13,11 @@ RUN go mod download
 # Copy remaining code
 COPY . .
 
-# Build the project
+# Build the project (production)
 RUN go build -o /go/bin/go-compose
 
-# Set program entry
+# Testing
+# RUN go run main.go
+
+# Set program entry (production)
 ENTRYPOINT [ "/go/bin/go-compose" ]

@@ -1,7 +1,20 @@
-version: '3'
+version: '2'
 
 services: 
-    web:
-        build: . # build current dockerfile
+    app:
+        # build: . # build web service from dockerfile
+        # develop
+        image: golang
+        volumes: 
+            - .:/go/src/go-compose
+        working_dir: /go/src/go-compose
+        command: go run main.go
         ports:
             - "8080:8080" # local 8080 -> container 8080
+        links:
+            - redis # link to database service
+        environment: 
+            REDIS_URL: redis:6379 # 
+    redis: # redis database service for the current project
+        image: redis:latest
+
